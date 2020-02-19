@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>error-bar</title>  
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://d3js.org/d3.v4.js"></script>
+</head>
+
+
+<body>
+
+<div id="myDiv"></div>
+	
+<script>
+	
+d3.csv("data.csv", function(data){
+
+var data = [
+  {
+    x: data.map(d => + d.x),
+    y: data.map(d => + d.y),
+    error_y: {
+      type: 'data',
+      array: data.map(d => + d.e),
+      visible: true
+    },
+    type: 'scatter'
+  }
+];
+
+Plotly.newPlot('myDiv', data);
+
+});
+
+
+</script>
+	
+</body>
+    
+</html>
